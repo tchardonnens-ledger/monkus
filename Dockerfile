@@ -16,4 +16,4 @@ RUN pnpm install
 COPY . .
 
 EXPOSE 8080
-CMD [ "node", "deploy-commands.js" ]
+CMD node deploy-commands.js && node index.js
