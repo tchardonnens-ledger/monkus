@@ -3,7 +3,14 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.MessageRead
+	]
+});
+
 
 client.commands = new Collection();
 const foldersPath = path.join(__dirname, 'commands');
@@ -27,6 +34,8 @@ for (const folder of commandFolders) {
 client.once(Events.ClientReady, () => {
 	console.log('Ready!');
 });
+
+client.login(token);
 
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -53,8 +62,8 @@ client.on(Events.MessageCreate, async message => {
 	if (message.author.bot) return;
 	chat(message.content).then(response => {
 		message.channel.send(response);
+		console.log(response);
 	}
 	);
 });
 
-client.login(token);
