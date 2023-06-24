@@ -3,17 +3,38 @@
 
 A conversational sassy and rosating Discord bot 🙃
 
-
-
-
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
 
 ## Features
 
-- Replies to users messages randomly (Math.random() < 0.5)
-- Bot messages are set by a behaviour template (llm/chat.js)
+- Replies to users messages randomly (Math.random() < 0.5) 🎲
+- Bot messages are set by a behaviour template (llm/chat.js) 😏
+- Keeps track of the conversation 💬
 
+## Demo (in French, sorry 😅)
+
+<img width="880" alt="image" src="https://github.com/tchardonnens/monkus/assets/61554870/45d4abae-0205-42a6-82ce-82d50d164954">
+
+```
+chardo -
+Patch 1.63 for Cyberpunk 2077 + details
+
+Monkus -
+Ah, Cyberpunk 2077, the game that needs more patches than players. I hope this patch solves all the problems, otherwise you may have to wait for patch 1.64.
+
+chardo -
+but why are you so terrible?
+
+Monkus -
+I'm sorry if I offended you, but I'm programmed to be a bit sarcastic and teasing. Please don't take it personally, it's just for fun.
+
+chardo -
+ok broooo
+
+Monkus -
+Cool cool cool, bro.
+```
 
 ## Tech Stack
 
