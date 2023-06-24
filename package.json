@@ -1,18 +1,17 @@
 {
   "name": "monkus",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.2",
+  "description": "Conversational bot for Discord",
   "main": "index.js",
   "scripts": {
     "start": "node deploy-commands.js && node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Thomas Chardo",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^14.9.0",
     "langchain": "^0.0.96"
-  },
-  "type": "module"
+  }
 }
