@@ -58,6 +58,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
 client.on(Events.MessageCreate, message => {
 	if (message.author.bot) return;
+	if (Math.random() > 0.5) return;
 	askLLM(message.content).then(response => {
 		message.channel.send(response);
 	}
