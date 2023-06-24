@@ -5,6 +5,7 @@ const { token } = require('./config.json');
 
 const client = new Client({
 	intents: [
+		GatewayIntentBits.Guilds,
 		GatewayIntentBits.MessageContent,
 		GatewayIntentBits.GuildMessages,
 	]
@@ -34,8 +35,6 @@ client.once(Events.ClientReady, () => {
 	console.log('Ready!');
 });
 
-client.login(token);
-
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
@@ -56,7 +55,7 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
-client.on(Events.MessageCreate, async message => {
+client.on(Events.MessageCreate, message => {
 	console.log(message.content);
 	if (message.author.bot) return;
 	chat(message.content).then(response => {
@@ -66,3 +65,4 @@ client.on(Events.MessageCreate, async message => {
 	);
 });
 
+client.login(token);
