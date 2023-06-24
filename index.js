@@ -57,18 +57,11 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.on(Events.MessageCreate, message => {
-	console.log(message.content);
 	if (message.author.bot) return;
 	askLLM(message.content).then(response => {
 		message.channel.send(response);
-		console.log(response);
 	}
 	);
 });
 
 client.login(token);
-
-askLLM("Je joue à Minecraft, tu veux jouer avec moi?").then(response => {
-	console.log(response);
-}
-);
