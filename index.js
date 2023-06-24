@@ -49,7 +49,8 @@ client.on(Events.InteractionCreate, async interaction => {
 });
 
 client.on(Events.MessageCreate, async message => {
-	if (!message.author.bot) return;
+	console.log(message.content);
+	if (message.author.bot) return;
 	chat(message.content).then(response => {
 		message.channel.send(response);
 	}
