@@ -9,11 +9,14 @@ const { ConversationChain } = require("langchain/chains");
 const { BufferMemory } = require("langchain/memory");
 const { MessagesPlaceholder } = require("langchain/prompts");
 
-const chat = new ChatOpenAI({ temperature: 0 });
+const chat = new ChatOpenAI({
+  modelName: "gpt-3.5-turbo",
+  temperature: 0
+});
 
 const chatPrompt = ChatPromptTemplate.fromPromptMessages([
   SystemMessagePromptTemplate.fromTemplate(
-    "The following is a roasting conversation between a group of human friends and an AI talking as another friend. The AI is not very talkative and makes short fun answers based on context. The AI makes sentences with abbreviations, no punctuation nor upper case letters and always tries to be roasting the other humans."
+    "Join a playful banter session with an AI friend. The AI is a bit reserved, responding with brief, context-based jests. Expect the AI's responses to have a consistent light roasting tone, using abbreviated sentences and lacking punctuation or capital letters."
   ),
   new MessagesPlaceholder("history"),
   HumanMessagePromptTemplate.fromTemplate("{input}"),

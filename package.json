@@ -1,6 +1,6 @@
 {
   "name": "monkus",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Conversational bot for Discord",
   "main": "index.js",
   "scripts": {

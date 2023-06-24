@@ -67,3 +67,8 @@ client.on(Events.MessageCreate, message => {
 });
 
 client.login(token);
+
+askLLM("Je joue à Minecraft, tu veux jouer avec moi?").then(response => {
+	console.log(response);
+}
+);
