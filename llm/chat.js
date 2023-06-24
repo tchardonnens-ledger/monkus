@@ -1,13 +1,13 @@
-import {
+const {
   SystemMessagePromptTemplate,
   HumanMessagePromptTemplate,
   ChatPromptTemplate,
-} from "langchain/prompts";
+} = require("langchain/prompts");
 
-import { ChatOpenAI } from "langchain/chat_models/openai";
-import { ConversationChain } from "langchain/chains";
-import { BufferMemory } from "langchain/memory";
-import { MessagesPlaceholder } from "langchain/prompts";
+const { ChatOpenAI } = require("langchain/chat_models/openai");
+const { ConversationChain } = require("langchain/chains");
+const { BufferMemory } = require("langchain/memory");
+const { MessagesPlaceholder } = require("langchain/prompts");
 
 const chat = new ChatOpenAI({ temperature: 0 });
 
@@ -25,7 +25,9 @@ const chain = new ConversationChain({
   llm: chat,
 });
 
-async function chat(message) {
+async function askLLM(message) {
   const response = await chain.call({ input: message });
   return response.response;
 }
+
+module.exports = askLLM;

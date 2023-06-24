@@ -2,6 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
+const askLLM = require('./llm/chat.js');
 
 const client = new Client({
 	intents: [
@@ -58,7 +59,7 @@ client.on(Events.InteractionCreate, async interaction => {
 client.on(Events.MessageCreate, message => {
 	console.log(message.content);
 	if (message.author.bot) return;
-	chat(message.content).then(response => {
+	askLLM(message.content).then(response => {
 		message.channel.send(response);
 		console.log(response);
 	}
