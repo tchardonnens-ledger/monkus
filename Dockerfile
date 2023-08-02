@@ -1,18 +1,21 @@
-FROM node:16
+# First stage: Build
+FROM node:16 as builder
 
 RUN npm i -g pnpm
 
-# Create app directory
 WORKDIR /app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
 COPY package.json pnpm-lock.yaml ./
 
+ENV NODE_ENV=production
 RUN pnpm install
 
-# Bundle app source
+# Second stage: Runtime
+FROM node:16-alpine as runner
+
+WORKDIR /app
+
+COPY --from=builder /app/node_modules ./node_modules
 COPY . .
 
 EXPOSE 8080
