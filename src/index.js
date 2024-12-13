@@ -12,9 +12,8 @@ const client = new Client({
 	]
 });
 
-
 client.commands = new Collection();
-const foldersPath = path.join(__dirname, 'commands');
+const foldersPath = path.join(__dirname, 'commands'); // eslint-disable-line no-undef
 const commandFolders = fs.readdirSync(foldersPath);
 
 for (const folder of commandFolders) {
@@ -47,6 +46,7 @@ client.on(Events.InteractionCreate, async interaction => {
 		await command.execute(interaction);
 	}
 	catch (error) {
+		console.error(error); // Add error logging
 		if (interaction.replied || interaction.deferred) {
 			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
 		}
@@ -56,13 +56,16 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
-client.on(Events.MessageCreate, message => {
+client.on(Events.MessageCreate, async message => { // Make async
 	if (message.author.bot) return;
 	if (Math.random() > 0.5) return;
-	askLLM(message.content).then(response => {
-		message.channel.send(response);
+
+	try {
+		const response = await askLLM(message.content);
+		await message.channel.send(response);
+	} catch (error) {
+		console.error('Error processing message:', error);
 	}
-	);
 });
 
 client.login(token);
